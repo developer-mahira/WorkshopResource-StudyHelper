@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudyGenie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace" aria-label="StudyGenie workspace">
+        <header class="topbar">
+          <div class="brand">
+            <div class="brand-mark" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div>
+              <h1>MN Study Helper</h1>
+              <p>Exam-ready study material from your notes</p>
+            </div>
+          </div>
+
+          <div class="status-pill" id="apiStatus">
+            <span class="status-dot"></span>
+            Checking API
+          </div>
+        </header>
+
+        <div class="main-grid">
+          <section class="input-panel" aria-label="Notes input">
+            <div class="panel-heading">
+              <div>
+                <h2>Notes</h2>
+                <p>PDF, DOCX, TXT, or pasted text</p>
+              </div>
+              <button class="icon-button" id="clearButton" type="button" title="Clear">
+                <span aria-hidden="true">x</span>
+              </button>
+            </div>
+
+            <label class="upload-zone" for="notesFile" id="uploadZone">
+              <input
+                id="notesFile"
+                name="notesFile"
+                type="file"
+                accept=".pdf,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain"
+              />
+              <span class="upload-icon" aria-hidden="true"></span>
+              <span class="upload-title" id="fileLabel">Choose file</span>
+              <span class="upload-meta">PDF, DOCX, TXT up to 10 MB</span>
+            </label>
+
+            <div class="divider"><span>or</span></div>
+
+            <textarea
+              id="notesInput"
+              rows="16"
+              placeholder="Paste your notes here..."
+              spellcheck="true"
+            ></textarea>
+
+            <div class="controls">
+              <div class="mode-tabs" role="tablist" aria-label="Generation mode">
+                <button class="mode-tab active" data-mode="full" type="button">Complete</button>
+                <button class="mode-tab" data-mode="flashcards" type="button">Flashcards</button>
+                <button class="mode-tab" data-mode="quiz" type="button">Quiz</button>
+                <button class="mode-tab" data-mode="explain" type="button">Explain</button>
+              </div>
+
+              <button class="primary-button" id="generateButton" type="button">
+                <span class="button-icon" aria-hidden="true"></span>
+                <span id="generateButtonText">Generate</span>
+              </button>
+            </div>
+          </section>
+
+          <section class="output-panel" aria-label="Generated output">
+            <div class="panel-heading output-heading">
+              <div>
+                <h2 id="outputTitle">Study Material</h2>
+                <p id="outputMeta">Ready when you are</p>
+              </div>
+              <div class="output-actions">
+                <button class="tool-button" id="copyButton" type="button" title="Copy output">
+                  Copy
+                </button>
+                <button class="tool-button" id="downloadButton" type="button" title="Save as PDF">
+                  Save PDF
+                </button>
+              </div>
+            </div>
+
+            <div class="output-tabs" role="tablist" aria-label="Output sections">
+              <button class="output-tab active" data-section="rendered" type="button">Rendered</button>
+              <button class="output-tab" data-section="raw" type="button">Markdown</button>
+            </div>
+
+            <div class="output-box">
+              <div class="empty-state" id="emptyState">
+                <div class="empty-visual" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <h3>No output yet</h3>
+                <p>Your generated study material will appear here.</p>
+              </div>
+              <article class="markdown-output hidden" id="renderedOutput"></article>
+              <pre class="raw-output hidden" id="rawOutput"></pre>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="/app.js"></script>
+  </body>
+</html>
