@@ -344,7 +344,7 @@ button:focus-visible {
 .mode-tabs {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  padding-bottom: 2px;
+  gap: 6px;
 }
 
 .mode-tab,
@@ -357,6 +357,10 @@ button:focus-visible {
 
 .mode-tab {
   width: 100%;
+  min-width: 0;       /* important */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .mode-tab.active,
